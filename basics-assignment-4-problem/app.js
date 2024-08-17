@@ -1,25 +1,26 @@
 const app = Vue.createApp({
-    data() {
-        return {
-            inputText: '',
-            isUser1: false,
-            isUser2: false,
-            buttonState: false
-        };
+  data() {
+    return {
+      inputText: "",
+      inputBackgroundColor: "",
+      isVisible: true,
+    };
+  },
+  computed: {
+    pClasses() {
+      return {
+        user1: this.inputText === "user1",
+        user2: this.inputText === "user2",
+        visible: this.isVisible,
+        hidden: !this.isVisible
+      };
     },
-    watch: {
-        inputText(value) {
-            if (value === 'user1'){
-                this.isUser1 = true;
-            } else if (value === 'user2') {
-                this.isUser2 = true;
-            } else {
-                this.isUser1 = false;
-                this.isUser2 = false;
-            }
-        }
+  },
+  methods: {
+    clickButton() {
+      this.isVisible = !this.isVisible;
     },
-    methods: {}
+  },
 });
 
-app.mount('#assignment');
+app.mount("#assignment");
